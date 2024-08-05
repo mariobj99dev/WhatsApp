@@ -1,0 +1,36 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO con Express</title>
+</head>
+
+<body>
+    <h1>Socket.IO con Express</h1>
+    <p id="message">Conectando...</p>
+
+    <input id="input" autocomplete="off" /><button onclick="sendMessage()">Enviar</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Conectar al servidor de Socket.IO
+        const socket = io();
+
+        // Escuchar un mensaje del servidor
+        socket.on('mensaje', function (msg) {
+            document.getElementById('message').innerHTML += '<br>' + msg;
+        });
+
+        // Enviar un mensaje al servidor
+        function sendMessage() {
+            const msg = document.getElementById('input').value;
+            socket.emit('mensaje', msg);
+            document.getElementById('input').value = '';
+        }
+    </script>
+</body>
+
+</html>
