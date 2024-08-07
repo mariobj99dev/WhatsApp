@@ -1,35 +1,51 @@
+// app.js (revisado)
 import express from 'express';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
+import dotenv from 'dotenv';
+import connectDB from './config/database.js';
+import path from 'path';
+import cors from 'cors';
+import corsOptions from './config/corsConfig.js';
+import authRoutes from './routes/authRoutes.js';
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
 
-const httpServer = createServer(app);
+// Middleware para parsear JSON
+app.use(express.json());
 
-const io = new Server(httpServer);
+// Aplicar la configuración de CORS a Express
+app.use(cors(corsOptions));
 
-app.use(express.static('public'))
+connectDB();
 
+// Servir archivos estáticos desde la carpeta 'public'
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Rutas de Autenticación
+app.use('/api/auth', authRoutes);
+
+// Redirigir la ruta raíz '/' a la página de login
 app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: './public' })
-})
-
-io.on('connection', (socket) => {
-    console.log('Un usuario se ha conectado');
-
-    socket.emit('mensaje', 'Bienvenido al servidor Socket.IO!');
-
-    socket.on('mensaje', (msg) => {
-        console.log('Mensaje recibido:', msg);
-        io.emit('mensaje', msg);
-    });
-
-    socket.on('disconnect', () => {
-        console.log('Un usuario se ha desconectado');
-    });
+    res.redirect('/login');
 });
 
-httpServer.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
+// Rutas para servir las páginas
+app.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'register.html'));
 });
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'profile.html'));
+});
+
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+export default app;

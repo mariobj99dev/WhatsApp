@@ -1,0 +1,29 @@
+<!-- public/profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+
+<body>
+    <h1>User Profile</h1>
+    <p><strong>Username:</strong> <span id="username"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Socket ID:</strong> <span id="socketId"></span></p> <!-- Mostrar el ID de Socket.IO -->
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        const email = urlParams.get('email');
+        const socketId = urlParams.get('socketId');
+
+        document.getElementById('username').innerText = username;
+        document.getElementById('email').innerText = email;
+        document.getElementById('socketId').innerText = socketId; // Mostrar el socketId
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+/* public/styles.css */
+@font-face {
+    font-family: 'HelveticaNeueMedium';
+    src: url('fonts/HelveticaNeueMedium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'HelveticaNeueMedium', Arial, sans-serif;
+    background: url('image.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    /* Asegura que no haya desplazamiento inesperado */
+}
+
+h1 {
+    background-color: #32a852;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#status {
+    margin: 0;
+    padding: 10px;
+    background-color: #80db7d;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+#messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fondo semitransparente para los mensajes */
+    margin-bottom: 50px;
+    /* Agrega espacio extra para el picker de emojis */
+    border-radius: 5px;
+}
+
+#messages p {
+    margin: 5px 0;
+    padding: 10px 15px 25px;
+    /* Añadido padding inferior para la hora */
+    border-radius: 10px;
+    max-width: 60%;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    word-wrap: break-word;
+    /* Asegura que el texto largo se ajuste dentro del globo */
+}
+
+#messages p.self {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    text-align: right;
+}
+
+#messages p.other {
+    align-self: flex-start;
+    text-align: left;
+}
+
+#messages .time {
+    font-size: 0.75em;
+    color: gray;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+#messageInput {
+    width: calc(100% - 40px);
+    /* Ajustado para dejar espacio al botón de emojis */
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #80db7d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+button:hover {
+    background-color: #72c873;
+}
+
+#inputContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    position: relative;
+    /* Asegura que el emojiPicker esté posicionado correctamente */
+}
+
+#emojiButton {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+#emojiPicker {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    bottom: 60px;
+    /* Ajustar según la altura del input */
+    left: 10px;
+    /* Puedes ajustar este valor o usar 'right' si es necesario */
+    width: 220px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    /* Asegura que esté sobre otros elementos */
+}
+
+.emoji {
+    font-size: 20px;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.1s;
+}
+
+.emoji:hover {
+    transform: scale(1.2);
+}
+
+.hidden {
+    display: none;
+}
