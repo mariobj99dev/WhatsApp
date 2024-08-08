@@ -42,8 +42,9 @@
                 const socket = io();
                 socket.on('connect', () => {
                     console.log('Connected to Socket.IO:', socket.id);
-                    // Redirigir a la página de chat principal (index.html) con la información del usuario y el socketId
-                    window.location.href = `/index.html?username=${data.data.username}&socketId=${socket.id}`;
+                    // Redirigir a la página principal de chats (main.html) con la información del usuario y el socketId
+                    // Redirigir a la página principal después del login con `userId`
+                    window.location.href = `/main.html?userId=${data.data._id}&username=${data.data.username}&socketId=${socket.id}`;
                 });
             } else {
                 document.getElementById('message').innerText = data.message;

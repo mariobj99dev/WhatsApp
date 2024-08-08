@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Grupos</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body>
+    <h1>Mis Grupos</h1>
+    <div id="groupList">
+        <!-- Aquí se mostrará la lista de grupos -->
+    </div>
+
+    <button id="createGroupButton">Crear Nuevo Grupo</button>
+
+    <div id="userSelectionModal" class="modal hidden">
+        <h2>Selecciona usuarios para el grupo</h2>
+        <div id="userSelection">
+            <!-- Usuarios disponibles se cargarán aquí -->
+        </div>
+        <button id="nextToGroupInfoButton">Siguiente</button>
+    </div>
+
+    <div id="groupInfoModal" class="modal hidden">
+        <h2>Información del grupo</h2>
+        <input type="text" id="groupName" placeholder="Nombre del grupo" required>
+        <input type="text" id="groupDescription" placeholder="Descripción del grupo">
+        <button id="createGroupSubmitButton">Crear Grupo</button>
+    </div>
+
+    <script src="../scripts/main.js"></script>
+</body>
+
+</html>

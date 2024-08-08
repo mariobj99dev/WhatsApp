@@ -1,14 +1,6 @@
-/* public/styles.css */
-@font-face {
-    font-family: 'HelveticaNeueMedium';
-    src: url('fonts/HelveticaNeueMedium.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
     font-family: 'HelveticaNeueMedium', Arial, sans-serif;
-    background: url('image.png') no-repeat center center fixed;
+    background: url('../images/background.png') no-repeat center center fixed;
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -16,8 +8,8 @@ body {
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
-    /* Asegura que no haya desplazamiento inesperado */
 }
+
 
 h1 {
     background-color: #32a852;
@@ -44,23 +36,19 @@ h1 {
     display: flex;
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.8);
-    /* Fondo semitransparente para los mensajes */
     margin-bottom: 50px;
-    /* Agrega espacio extra para el picker de emojis */
     border-radius: 5px;
 }
 
 #messages p {
     margin: 5px 0;
     padding: 10px 15px 25px;
-    /* Añadido padding inferior para la hora */
     border-radius: 10px;
     max-width: 60%;
     background-color: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     position: relative;
     word-wrap: break-word;
-    /* Asegura que el texto largo se ajuste dentro del globo */
 }
 
 #messages p.self {
@@ -84,7 +72,6 @@ h1 {
 
 #messageInput {
     width: calc(100% - 40px);
-    /* Ajustado para dejar espacio al botón de emojis */
     padding: 10px;
     margin: 10px;
     border: 1px solid #ccc;
@@ -114,7 +101,6 @@ button:hover {
     padding: 10px;
     background-color: #f0f0f0;
     position: relative;
-    /* Asegura que el emojiPicker esté posicionado correctamente */
 }
 
 #emojiButton {
@@ -135,15 +121,12 @@ button:hover {
     padding: 10px;
     position: absolute;
     bottom: 60px;
-    /* Ajustar según la altura del input */
     left: 10px;
-    /* Puedes ajustar este valor o usar 'right' si es necesario */
     width: 220px;
     max-height: 200px;
     overflow-y: auto;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    /* Asegura que esté sobre otros elementos */
 }
 
 .emoji {
@@ -159,4 +142,61 @@ button:hover {
 
 .hidden {
     display: none;
+}
+
+#startRecording,
+#stopRecording {
+    background-color: #80db7d;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+#startRecording:hover,
+#stopRecording:hover {
+    background-color: #72c873;
+}
+
+#groupList .group-item {
+    background-color: #e5e5e5;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#groupList .group-item:hover {
+    background-color: #d5d5d5;
+}
+
+.user-item {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.user-item.selected {
+    background-color: #c8e6c9;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
 }

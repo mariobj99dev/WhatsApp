@@ -1,0 +1,56 @@
+<!-- public/html/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Chat</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <h1>AlcantarAPP</h1>
+    <p id="status">Connecting...</p>
+
+    <div id="messages"></div> <!-- Contenedor para mostrar mensajes -->
+
+    <div id="inputContainer">
+        <button id="emojiButton">😊</button> <!-- Botón para mostrar emojis -->
+        <div id="emojiPicker" class="hidden">
+            <span class="emoji">😀</span>
+            <span class="emoji">😂</span>
+            <span class="emoji">😍</span>
+            <span class="emoji">😭</span>
+            <span class="emoji">😎</span>
+            <span class="emoji">👍</span>
+            <span class="emoji">👎</span>
+            <span class="emoji">🔥</span>
+            <span class="emoji">🎉</span>
+        </div>
+        <input type="text" id="messageInput" placeholder="Type a message..." />
+        <button id="startRecording">
+            <i class="fa fa-microphone" aria-hidden="true"></i>
+        </button> <!-- Botón para comenzar a grabar -->
+        <button id="stopRecording" class="hidden">
+            <i class="fa fa-stop" aria-hidden="true"></i>
+        </button>
+        <!-- Botón para detener la grabación -->
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module">
+        import { handleMessages } from '../scripts/socket.js';
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        if (username) {
+            handleMessages(username);
+        } else {
+            document.getElementById('status').innerText = 'Error: No username provided';
+            console.error('No username provided');
+        }
+    </script>
+</body>
+
+</html>
